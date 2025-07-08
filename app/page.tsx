@@ -166,8 +166,8 @@ export default function Portfolio() {
             <h2 className="text-lg font-semibold mb-6 tracking-wide">EXPERIENCE</h2>
             <div className="space-y-6">
               <div className="flex items-start gap-4 transition-all duration-500 hover:translate-x-2">
-                <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
-                  <div className="w-6 h-6 bg-white rounded-full"></div>
+                <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
+                  <Image src="/juspay_logo.png" alt="Juspay" width={40} height={40} />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-semibold text-lg">Product Designer Intern</h3>
