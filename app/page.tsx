@@ -108,7 +108,7 @@ export default function Portfolio() {
               <Button variant="ghost" size="icon" onClick={toggleDarkMode} className="rounded-full text-white hover:bg-white/10 hover:text-white">
                 {darkMode ? <Sun className="w-4 h-4 "/> : <Moon className="w-4 h-4" />}
               </Button>
-              <Link href="/" className=" bg-opacity-20 dark:border-zinc-800 bg-white hover:bg-zinc-200/70 dark:bg-gradient-to-b dark:from-zinc-900 dark:to-zinc-950  dark:text-zinc-50 dark:hover:bg-zinc-300 text-zinc-50 px-6 py-2 dark:border rounded-xl dark:border-gray-800">
+              <Link href="https://www.figma.com/deck/Y6NhRAjAgVSP757S6Ei4A5/Rishabh's-Work?node-id=1-34&t=IomQ7qC2Bed0Kq6Z-1" className=" bg-opacity-20 dark:border-zinc-800 bg-white hover:bg-zinc-200/70 dark:bg-gradient-to-b dark:from-zinc-900 dark:to-zinc-950  dark:text-zinc-50 dark:hover:bg-zinc-300 text-zinc-50 px-6 py-2 dark:border rounded-xl dark:border-gray-800">
                 HIRE ME
               </Link>
             </div>
