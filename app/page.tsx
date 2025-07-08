@@ -90,26 +90,10 @@ export default function Portfolio() {
 
   return (
     <div
-  className={`min-h-screen transition-colors duration-300 relative ${
-    darkMode
-      ? "dark bg-zinc-950 text-white"
-      : `
-          text-gray-900 
-          before:content-[''] 
-          before:absolute
-
-          before:inset-0 
-          before:bg-[url('/sky-background.png')] 
-          before:bg-contain 
-          before:bg-no-repeat 
-          max-md:before:before:bg-[center_-400px]
-          max-md:before:bg-[length:1200px_auto] 
-          before:opacity-90 
-          before:pointer-events-none 
-          before:-z-10
-        `
-  }`}
->
+      className={`min-h-screen transition-colors duration-300 relative ${
+        darkMode ? "dark bg-zinc-950 text-white" : "text-gray-900"
+      } ${!darkMode ? "before:content-[''] bg-[center_calc(50%_-_200px)] before:absolute before:inset-0 before:bg-[url('/sky-background.png')] sm:before:bg-cover before:bg-cover before:bg-no-repeat before:bg-scroll before:opacity-90 before:pointer-events-none" : ""}`}
+    >
       <div
         className={`max-w-4xl mx-auto border-l border-r ${darkMode ? "border-zinc-800" : "border-white/0"} px-4 py-8 sm:px-6 lg:px-8`}
       >
@@ -139,8 +123,8 @@ export default function Portfolio() {
             <div className="relative w-24 h-24 mx-auto mb-6 ">
               <Image src="/profile-avatar.png" alt="Rishabh Pandey" width={96} height={96} className="rounded-xl border-4 border-gray-100" />
             </div>
-            <h1 className={`text-3xl sm:text-4xl ${darkMode ? "text-white" : "text-black"} font-bold mb-2`}>Rishabh Pandey</h1>
-            <p className="text-lg text-black/60 dark:text-gray-300">Product Designer & Developer</p>
+            <h1 className="text-3xl sm:text-4xl text-white font-bold mb-2">Rishabh Pandey</h1>
+            <p className="text-lg text-white/60 dark:text-gray-300">Product Designer & Developer</p>
           </section>
         </AnimatedSection>
 
@@ -244,9 +228,9 @@ export default function Portfolio() {
         <AnimatedSection delay={100}>
           <section className="mb-16">
             <h2 className="text-lg font-semibold mb-6 tracking-wide">PROJECTS</h2>
-            <div className="grid grid-cols-1 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* About Us Project with Carousel - Takes 2 columns */}
-              <Card className="overflow-hidden hover:shadow-lg hover:-translate-y-2 transition-all duration-300">
+              <Card className="overflow-hidden hover:shadow-lg hover:-translate-y-2 transition-all duration-300 md:col-span-2">
                 <CardContent className="p-0">
                   <div className="aspect-square md:aspect-[2/1] relative">
                     <Carousel items={projectData.aboutUs} autoPlay={true} autoPlayInterval={4000} />
@@ -257,7 +241,14 @@ export default function Portfolio() {
               {/* Right column container for the other two cards */}
 
               {/* View Projects Card */}
-              
+              <Card className="overflow-hidden hover:-translate-y-2 transition-all duration-300 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <CardContent className="p-8 flex flex-col items-center justify-center aspect-square">
+                  <div className="w-16 h-16 bg-gray-400 dark:bg-gray-600 rounded-full flex items-center justify-center mb-4 transition-transform duration-300 hover:scale-110">
+                    <ArrowUpRight className="w-8 h-8 text-white" />
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-300 font-medium">View Projects</p>
+                </CardContent>
+              </Card>
             </div>
           </section>
         </AnimatedSection>
