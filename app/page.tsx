@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -8,6 +8,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import { MapPin, Moon, Sun, Github, ArrowUpRight } from "lucide-react"
 import { AnimatedSection } from "@/components/AnimatedSection"
 import { Carousel } from "@/components/Carousel"
+import Link from 'next/link'
+import Lenis from "@studio-freight/lenis"
 
 export default function Portfolio() {
   const [darkMode, setDarkMode] = useState(false)
@@ -16,6 +18,31 @@ export default function Portfolio() {
     setDarkMode(!darkMode)
     document.documentElement.classList.toggle("dark")
   }
+
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: "vertical",
+      gestureDirection: "vertical",
+      smooth: true,
+      mouseMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false,
+    })
+
+    function raf(time: number) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+
+    requestAnimationFrame(raf)
+
+    return () => {
+      lenis.destroy()
+    }
+  }, [])
 
   // Sample project data with carousel items
   const projectData = {
@@ -63,7 +90,9 @@ export default function Portfolio() {
 
   return (
     <div
-      className={`min-h-screen transition-colors duration-300 ${darkMode ? "dark bg-zinc-950 text-white" : "bg-gray-50 text-gray-900"}`}
+      className={`min-h-screen transition-colors duration-300 relative ${
+        darkMode ? "dark bg-zinc-950 text-white" : "text-gray-900"
+      } ${!darkMode ? "before:content-[''] before:absolute before:inset-0 before:bg-[url('/sky-background.png')] before:bg-cover before:bg-center before:bg-no-repeat before:bg-scroll before:opacity-90 before:pointer-events-none" : ""}`}
     >
       <div
         className={`max-w-4xl mx-auto border-l border-r ${darkMode ? "border-zinc-800" : "border-gray-200"} px-4 py-8 sm:px-6 lg:px-8`}
@@ -71,17 +100,17 @@ export default function Portfolio() {
         {/* Header */}
         <AnimatedSection>
           <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-12 gap-4">
-            <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+            <div className="flex items-center gap-2 text-sm text-white dark:text-gray-400">
               <MapPin className="w-4 h-4" />
               <span>BOM ✈️ BLR, INDIA</span>
             </div>
             <div className="flex items-center gap-3">
-              <Button variant="ghost" size="icon" onClick={toggleDarkMode} className="rounded-full">
-                {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              <Button variant="ghost" size="icon" onClick={toggleDarkMode} className="rounded-full text-white hover:bg-white/10 hover:text-white">
+                {darkMode ? <Sun className="w-4 h-4 "/> : <Moon className="w-4 h-4" />}
               </Button>
-              <Button className="bg-gradient-to-b border border-gray-200 dark:border-zinc-800 from-white to-gray-100 hover:bg-zinc-700 dark:bg-gradient-to-b dark:from-zinc-900 dark:to-zinc-950  dark:text-zinc-50 dark:hover:bg-zinc-300 text-zinc-500 px-6">
+              <Link href="/" className=" bg-opacity-20 dark:border-zinc-800 bg-white hover:bg-zinc-200/70 dark:bg-gradient-to-b dark:from-zinc-900 dark:to-zinc-950  dark:text-zinc-50 dark:hover:bg-zinc-300 text-zinc-50 px-6 py-2 dark:border rounded-xl dark:border-gray-800">
                 HIRE ME
-              </Button>
+              </Link>
             </div>
           </header>
         </AnimatedSection>
@@ -91,21 +120,21 @@ export default function Portfolio() {
         {/* Profile Section */}
         <AnimatedSection delay={100}>
           <section className="text-center mb-16">
-            <div className="relative w-24 h-24 mx-auto mb-6">
-              <Image src="/profile-avatar.png" alt="Rishabh Pandey" width={96} height={96} className="rounded-xl" />
+            <div className="relative w-24 h-24 mx-auto mb-6 ">
+              <Image src="/profile-avatar.png" alt="Rishabh Pandey" width={96} height={96} className="rounded-xl border-4 border-gray-100" />
             </div>
-            <h1 className="text-3xl sm:text-4xl font-bold mb-2">Rishabh Pandey</h1>
-            <p className="text-lg text-gray-600 dark:text-gray-300">Product Designer & Developer</p>
+            <h1 className="text-3xl sm:text-4xl text-white font-bold mb-2">Rishabh Pandey</h1>
+            <p className="text-lg text-white/60 dark:text-gray-300">Product Designer & Developer</p>
           </section>
         </AnimatedSection>
 
         <div className=" border-dashed border-gray-300 dark:border-gray-700 mb-16"></div>
 
         {/* About Section */}
-        <AnimatedSection delay={200}>
+        <AnimatedSection delay={100}>
           <section className="mb-16">
             <h2 className="text-lg font-semibold mb-4 tracking-wide">ABOUT</h2>
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl">
+            <p className="text-zinc-800 dark:text-gray-300 leading-relaxed max-w-3xl">
               I'm a Design Engineer crafting intuitive, scalable digital experiences at the intersection of design and
               code. With a strong foundation in front-end development and UX design, I bring ideas to life from concept
               to deployment by building robust UI systems and shaping user-centered products.
@@ -116,7 +145,7 @@ export default function Portfolio() {
         <div className="border-dashed border-gray-300 dark:border-gray-700 mb-16"></div>
 
         {/* Experience Section */}
-        <AnimatedSection delay={300}>
+        <AnimatedSection delay={100}>
           <section className="mb-16">
             <h2 className="text-lg font-semibold mb-6 tracking-wide">EXPERIENCE</h2>
             <div className="space-y-6">
@@ -162,7 +191,7 @@ export default function Portfolio() {
         <div className=" border-dashed border-gray-300 dark:border-gray-700 mb-16"></div>
 
         {/* Projects Section */}
-        <AnimatedSection delay={400}>
+        <AnimatedSection delay={100}>
           <section className="mb-16">
             <h2 className="text-lg font-semibold mb-6 tracking-wide">PROJECTS</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -176,19 +205,16 @@ export default function Portfolio() {
               </Card>
 
               {/* Right column container for the other two cards */}
-              
-                {/* View Projects Card */}
-                <Card className="overflow-hidden hover:shadow-lg hover:-translate-y-2 transition-all duration-300 border-2 border-dashed border-gray-300 dark:border-gray-600">
-                  <CardContent className="p-8 flex flex-col items-center justify-center aspect-square">
-                    <div className="w-16 h-16 bg-gray-400 dark:bg-gray-600 rounded-full flex items-center justify-center mb-4 transition-transform duration-300 hover:scale-110">
-                      <ArrowUpRight className="w-8 h-8 text-white" />
-                    </div>
-                    <p className="text-gray-600 dark:text-gray-300 font-medium">View Projects</p>
-                  </CardContent>
-                </Card>
 
-                
-              
+              {/* View Projects Card */}
+              <Card className="overflow-hidden hover:shadow-lg hover:-translate-y-2 transition-all duration-300 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <CardContent className="p-8 flex flex-col items-center justify-center aspect-square">
+                  <div className="w-16 h-16 bg-gray-400 dark:bg-gray-600 rounded-full flex items-center justify-center mb-4 transition-transform duration-300 hover:scale-110">
+                    <ArrowUpRight className="w-8 h-8 text-white" />
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-300 font-medium">View Projects</p>
+                </CardContent>
+              </Card>
             </div>
           </section>
         </AnimatedSection>
@@ -196,7 +222,7 @@ export default function Portfolio() {
         <div className=" border-dashed border-gray-300 dark:border-gray-700 mb-16"></div>
 
         {/* Skills Section */}
-        <AnimatedSection delay={500}>
+        <AnimatedSection delay={100}>
           <section className="mb-16">
             <h2 className="text-lg font-semibold mb-6 tracking-wide">SKILLS / STACK</h2>
             <div className="flex flex-wrap gap-3">
@@ -233,7 +259,7 @@ export default function Portfolio() {
         <div className=" border-dashed border-gray-300 dark:border-gray-700 mb-16"></div>
 
         {/* GitHub Section */}
-        <AnimatedSection delay={600}>
+        <AnimatedSection delay={100}>
           <section className="mb-16">
             <div className="flex justify-start">
               <Github className="w-8 h-8 text-gray-700 dark:text-gray-300 transition-transform duration-300 hover:scale-110" />
@@ -244,7 +270,7 @@ export default function Portfolio() {
         <div className=" border-dashed border-gray-300 dark:border-gray-700 mb-16"></div>
 
         {/* Contact Section */}
-        <AnimatedSection delay={700}>
+        <AnimatedSection delay={100}>
           <section>
             <h2 className="text-lg font-semibold mb-6 tracking-wide">CONTACT</h2>
             <div className="space-y-4">
