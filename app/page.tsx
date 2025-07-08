@@ -92,14 +92,14 @@ export default function Portfolio() {
     <div
       className={`min-h-screen transition-colors duration-300 relative ${
         darkMode ? "dark bg-zinc-950 text-white" : "text-gray-900"
-      } ${!darkMode ? "before:content-[''] before:absolute before:inset-0 before:bg-[url('/sky-background.png')] before:bg-cover before:bg-center before:bg-no-repeat before:bg-scroll before:opacity-90 before:pointer-events-none" : ""}`}
+      } ${!darkMode ? "before:content-[''] bg-[center_calc(50%_-_200px)] before:absolute before:inset-0 before:bg-[url('/sky-background.png')] sm:before:bg-cover before:bg-cover before:bg-no-repeat before:bg-scroll before:opacity-90 before:pointer-events-none" : ""}`}
     >
       <div
-        className={`max-w-4xl mx-auto border-l border-r ${darkMode ? "border-zinc-800" : "border-gray-200"} px-4 py-8 sm:px-6 lg:px-8`}
+        className={`max-w-4xl mx-auto border-l border-r ${darkMode ? "border-zinc-800" : "border-white/0"} px-4 py-8 sm:px-6 lg:px-8`}
       >
         {/* Header */}
         <AnimatedSection>
-          <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-12 gap-4">
+          <header className="flex flex-row justify-between items-center sm:items-center mb-12 gap-4">
             <div className="flex items-center gap-2 text-sm text-white dark:text-gray-400">
               <MapPin className="w-4 h-4" />
               <span>BOM ✈️ BLR, INDIA</span>
@@ -188,38 +188,6 @@ export default function Portfolio() {
           </section>
         </AnimatedSection>
 
-        <div className=" border-dashed border-gray-300 dark:border-gray-700 mb-16"></div>
-
-        {/* Projects Section */}
-        <AnimatedSection delay={100}>
-          <section className="mb-16">
-            <h2 className="text-lg font-semibold mb-6 tracking-wide">PROJECTS</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* About Us Project with Carousel - Takes 2 columns */}
-              <Card className="overflow-hidden hover:shadow-lg hover:-translate-y-2 transition-all duration-300 md:col-span-2">
-                <CardContent className="p-0">
-                  <div className="aspect-square md:aspect-[2/1] relative">
-                    <Carousel items={projectData.aboutUs} autoPlay={true} autoPlayInterval={4000} />
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Right column container for the other two cards */}
-
-              {/* View Projects Card */}
-              <Card className="overflow-hidden hover:shadow-lg hover:-translate-y-2 transition-all duration-300 border-2 border-dashed border-gray-300 dark:border-gray-600">
-                <CardContent className="p-8 flex flex-col items-center justify-center aspect-square">
-                  <div className="w-16 h-16 bg-gray-400 dark:bg-gray-600 rounded-full flex items-center justify-center mb-4 transition-transform duration-300 hover:scale-110">
-                    <ArrowUpRight className="w-8 h-8 text-white" />
-                  </div>
-                  <p className="text-gray-600 dark:text-gray-300 font-medium">View Projects</p>
-                </CardContent>
-              </Card>
-            </div>
-          </section>
-        </AnimatedSection>
-
-        <div className=" border-dashed border-gray-300 dark:border-gray-700 mb-16"></div>
 
         {/* Skills Section */}
         <AnimatedSection delay={100}>
@@ -256,14 +224,41 @@ export default function Portfolio() {
           </section>
         </AnimatedSection>
 
-        <div className=" border-dashed border-gray-300 dark:border-gray-700 mb-16"></div>
+        {/* Projects Section */}
+        <AnimatedSection delay={100}>
+          <section className="mb-16">
+            <h2 className="text-lg font-semibold mb-6 tracking-wide">PROJECTS</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* About Us Project with Carousel - Takes 2 columns */}
+              <Card className="overflow-hidden hover:shadow-lg hover:-translate-y-2 transition-all duration-300 md:col-span-2">
+                <CardContent className="p-0">
+                  <div className="aspect-square md:aspect-[2/1] relative">
+                    <Carousel items={projectData.aboutUs} autoPlay={true} autoPlayInterval={4000} />
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Right column container for the other two cards */}
+
+              {/* View Projects Card */}
+              <Card className="overflow-hidden hover:-translate-y-2 transition-all duration-300 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <CardContent className="p-8 flex flex-col items-center justify-center aspect-square">
+                  <div className="w-16 h-16 bg-gray-400 dark:bg-gray-600 rounded-full flex items-center justify-center mb-4 transition-transform duration-300 hover:scale-110">
+                    <ArrowUpRight className="w-8 h-8 text-white" />
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-300 font-medium">View Projects</p>
+                </CardContent>
+              </Card>
+            </div>
+          </section>
+        </AnimatedSection>
 
         {/* GitHub Section */}
         <AnimatedSection delay={100}>
           <section className="mb-16">
-            <div className="flex justify-start">
+            <Link href="https://github.com/rizzabh" className="flex justify-start">
               <Github className="w-8 h-8 text-gray-700 dark:text-gray-300 transition-transform duration-300 hover:scale-110" />
-            </div>
+            </Link>
           </section>
         </AnimatedSection>
 
