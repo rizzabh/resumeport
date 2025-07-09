@@ -192,33 +192,20 @@ export default function Portfolio() {
     ],
     DES: [
       {
+        name: "Case Study",
+        detail: "A UX Casestudy",
+        image: "/smartharvest.png",
+        "button-name": "Visit",
+        link1: "https://medium.com/design-bootcamp/smartharvest-ux-case-study-29d7fd8aea36",
+      },
+      {
         name: "UI/UX Projects",
         detail: "Design Portfolio",
         image: "./Framer.webp",
         "button-name": "Visit",
         link1: "https://rizzabh.framer.website/",
       },
-      {
-        name: "Mobile App Design",
-        detail: "iOS and Android app interface design",
-        image: "/placeholder.svg?height=300&width=400&text=Mobile+Design",
-        "button-name": "View",
-        link1: "#",
-      },
-      {
-        name: "Dashboard UI",
-        detail: "Analytics dashboard user interface",
-        image: "/placeholder.svg?height=300&width=400&text=Dashboard+UI",
-        "button-name": "View",
-        link1: "#",
-      },
-      {
-        name: "Brand Identity",
-        detail: "Complete brand identity and guidelines",
-        image: "/placeholder.svg?height=300&width=400&text=Brand+Identity",
-        "button-name": "View",
-        link1: "#",
-      },
+      
     ],
   }
 
