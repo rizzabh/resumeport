@@ -232,9 +232,8 @@ export default function Portfolio() {
           text-gray-900 
           before:content-[''] 
           before:absolute
-
           before:inset-0 
-          before:bg-[url('/sky-background.png')] 
+          before:bg-[url('${!darkMode ? "/sky-background.png" : "/dark-sky-background.png" }')] 
           before:bg-contain 
           before:bg-no-repeat 
           max-md:before:before:bg-[center_-400px]
