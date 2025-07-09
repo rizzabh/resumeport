@@ -43,7 +43,7 @@ export function ProjectCard({ name, detail, image, buttonName, link1, buttonName
       <div className="flex items-center justify-between px-2 py-3 bg-gray-50 dark:bg-zinc-800 border-b border-gray-200 dark:border-zinc-700">
         <div className="flex items-center gap-2">
           
-            <span className="text-xs items-center text-gray-500 flex gap-1 px-2 py-1 bg-gray-400/10 rounded-full dark:text-gray-400 font-mono">
+            <span className="text-xs items-center text-gray-500 flex gap-1 px-2 py-1 bg-gray-400/10 rounded-full truncate text-clamp-1 dark:text-gray-400 font-mono">
                 <Globe size={12} />
               {link1 ? extractDomain(link1) : "localhost"}
             </span>
