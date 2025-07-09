@@ -3,12 +3,10 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent } from "@/components/ui/card"
-import { MapPin, Moon, Sun, Github, ArrowUpRight, Terminal, Palette } from "lucide-react"
+import { MapPin, Moon, Sun, Github, Terminal, Palette } from "lucide-react"
 import { AnimatedSection } from "@/components/AnimatedSection"
 import { ProjectCarousel } from "@/components/ProjectCarousel"
-import Link from 'next/link'
+import Link from "next/link"
 import Lenis from "@studio-freight/lenis"
 
 export default function Portfolio() {
@@ -225,15 +223,33 @@ export default function Portfolio() {
 
   return (
     <div
-  className={`min-h-screen transition-colors duration-300 relative ${
-    darkMode
-      ? "dark bg-zinc-950 text-white"
-      : `
+      className={`min-h-screen transition-colors duration-300 relative ${
+        darkMode
+          ? `
+     text-white
+     before:content-[''] 
+     before:absolute
+     before:inset-0 
+     before:bg-[url('/dark-sky-background.png')] 
+     before:bg-contain 
+     before:bg-no-repeat 
+     xl:before:bg-[center_-600px]
+     lg:before:bg-[center_-400px]
+     md:before:bg-[center_-200px]
+     sm:before:bg-[center_-200px]
+
+     
+     max-sm:before:bg-[center_-400px]
+     max-sm:before:bg-[length:1200px_auto] 
+     before:opacity-90 
+     before:pointer-events-none 
+     before:-z-10`
+          : `
           text-gray-900 
           before:content-[''] 
           before:absolute
           before:inset-0 
-          before:bg-[url('${!darkMode ? "/sky-background.png" : "/dark-sky-background.png" }')] 
+          before:bg-[url('/sky-background.png')] 
           before:bg-contain 
           before:bg-no-repeat 
           max-md:before:before:bg-[center_-400px]
@@ -242,11 +258,9 @@ export default function Portfolio() {
           before:pointer-events-none 
           before:-z-10
         `
-  }`}
->
-      <div
-        className={`max-w-4xl mx-auto border-l border-r ${darkMode ? "border-zinc-800" : "border-white/0"} px-4 py-8 sm:px-6 lg:px-8`}
-      >
+      }`}
+    >
+      <div className={`max-w-4xl mx-auto ${darkMode ? "" : "border-white/0"} px-4 py-8 sm:px-6 lg:px-8`}>
         {/* Header */}
         <AnimatedSection delay={100}>
           <header className="flex flex-row justify-between items-center sm:items-center mb-12 gap-4">
@@ -255,25 +269,39 @@ export default function Portfolio() {
               <span>BOM ✈️ BLR, INDIA</span>
             </div>
             <div className="flex items-center gap-3">
-              <Button variant="ghost" size="icon" onClick={toggleDarkMode} className="rounded-full text-white hover:bg-white/10 hover:text-white">
-                {darkMode ? <Sun className="w-4 h-4 "/> : <Moon className="w-4 h-4" />}
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleDarkMode}
+                className="rounded-full text-white hover:bg-white/10 hover:text-white"
+              >
+                {darkMode ? <Sun className="w-4 h-4 " /> : <Moon className="w-4 h-4" />}
               </Button>
-              <Link href="https://www.figma.com/deck/Y6NhRAjAgVSP757S6Ei4A5/Rishabh's-Work?node-id=1-34&t=IomQ7qC2Bed0Kq6Z-1" className=" bg-opacity-20 dark:border-zinc-800 bg-white hover:bg-zinc-200/70 dark:bg-gradient-to-b dark:from-zinc-900 dark:to-zinc-950  dark:text-zinc-50 dark:hover:bg-zinc-300 text-zinc-50 px-6 py-2 dark:border rounded-xl dark:border-gray-800">
+              <Link
+                href="https://www.figma.com/deck/Y6NhRAjAgVSP757S6Ei4A5/Rishabh's-Work?node-id=1-34&t=IomQ7qC2Bed0Kq6Z-1"
+                className=" bg-opacity-20 dark:border-zinc-800 bg-white hover:bg-zinc-200/70 dark:bg-gradient-to-b dark:from-zinc-900 dark:to-zinc-950  dark:text-zinc-50 dark:hover:bg-zinc-300 text-zinc-50 px-6 py-2 dark:border rounded-xl dark:border-gray-800"
+              >
                 HIRE ME
               </Link>
             </div>
           </header>
         </AnimatedSection>
 
-        <div className=" border-dashed border-gray-300 dark:border-gray-700 mb-12"></div>
-
         {/* Profile Section */}
         <AnimatedSection delay={200}>
           <section className="text-center mb-16">
             <div className="relative w-24 h-24 mx-auto mb-6 ">
-              <Image src="/profile-avatar.png" alt="Rishabh Pandey" width={96} height={96} className="rounded-xl border-4 border-gray-100" />
+              <Image
+                src="/profile-avatar.png"
+                alt="Rishabh Pandey"
+                width={96}
+                height={96}
+                className={`rounded-xl border-4  ${darkMode ? "border-gray-100/10" : "border-gray-100" } font-bold mb-2`}
+              />
             </div>
-            <h1 className={`text-3xl sm:text-4xl ${darkMode ? "text-white" : "text-black"} font-bold mb-2`}>Rishabh Pandey</h1>
+            <h1 className={`text-3xl sm:text-4xl ${darkMode ? "text-white" : "text-black"} font-bold mb-2`}>
+              Rishabh Pandey
+            </h1>
             <p className="text-lg text-black/60 dark:text-gray-300">Product Designer & Developer</p>
           </section>
         </AnimatedSection>
@@ -337,7 +365,6 @@ export default function Portfolio() {
             </div>
           </section>
         </AnimatedSection>
-
 
         {/* Skills Section */}
         <AnimatedSection delay={200}>
@@ -430,11 +457,17 @@ export default function Portfolio() {
                 <span className="font-medium">Email</span>
                 <span className="text-gray-600 dark:text-gray-300">pandeyrishabh966@gmail.com</span>
               </div>
-              <Link href="https://linkedin.com/in/rizzabh" className="flex flex-col sm:flex-row sm:justify-between sm:items-center transition-all duration-300 hover:translate-x-2">
+              <Link
+                href="https://linkedin.com/in/rizzabh"
+                className="flex flex-col sm:flex-row sm:justify-between sm:items-center transition-all duration-300 hover:translate-x-2"
+              >
                 <span className="font-medium">LinkedIn</span>
                 <span className="text-gray-600 dark:text-gray-300 hover:underline">/in/rizzabh</span>
               </Link>
-              <Link href="https://x.com/rizz_abh" className="flex flex-col sm:flex-row sm:justify-between sm:items-center transition-all duration-300 hover:translate-x-2">
+              <Link
+                href="https://x.com/rizz_abh"
+                className="flex flex-col sm:flex-row sm:justify-between sm:items-center transition-all duration-300 hover:translate-x-2"
+              >
                 <span className="font-medium">X/Twitter</span>
                 <span className="text-gray-600 dark:text-gray-300 hover:underline">@rizz_abh</span>
               </Link>
