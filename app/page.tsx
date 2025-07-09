@@ -5,14 +5,15 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
-import { MapPin, Moon, Sun, Github, ArrowUpRight } from "lucide-react"
+import { MapPin, Moon, Sun, Github, ArrowUpRight, Terminal, Palette } from "lucide-react"
 import { AnimatedSection } from "@/components/AnimatedSection"
-import { Carousel } from "@/components/Carousel"
+import { ProjectCarousel } from "@/components/ProjectCarousel"
 import Link from 'next/link'
 import Lenis from "@studio-freight/lenis"
 
 export default function Portfolio() {
   const [darkMode, setDarkMode] = useState(false)
+  const [activeTab, setActiveTab] = useState("DEV")
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode)
@@ -46,44 +47,178 @@ export default function Portfolio() {
 
   // Sample project data with carousel items
   const projectData = {
-    aboutUs: [
+    DEV: [
       {
-        id: "1",
-        image: "/placeholder.svg?height=300&width=300&text=About+Us+1",
-        title: "About Us - Landing",
-        description: "Modern landing page design",
+        name: "Solana Rewind",
+        detail: "Wallet Roaster for Solana",
+        image: "./rewind.webp",
+        "button-name": "Visit",
+        link1: "https://solanarewind.fun/",
       },
       {
-        id: "2",
-        image: "/placeholder.svg?height=300&width=300&text=About+Us+2",
-        title: "About Us - Team",
-        description: "Team showcase section",
+        name: "S.I.C.K",
+        detail: "SIP for Web3",
+        image: "./image.webp",
+        "button-name": "Visit",
+        link1: "https://sickfreak.club/",
+        "button-name2": "Org",
+        link2: "https://github.com/SICK-Solana",
       },
       {
-        id: "3",
-        image: "/placeholder.svg?height=300&width=300&text=About+Us+3",
-        title: "About Us - Contact",
-        description: "Contact form design",
+        name: "Flowpro",
+        detail: "Low Code Backend Tool",
+        image: "./flowpro.webp",
+        "button-name": "Visit",
+        link1: "https://flow-pro.vercel.app/",
+      },
+      {
+        name: "Yen.fyi",
+        detail: "Website for Yen token",
+        image: "./yen.webp",
+        "button-name": "Visit",
+        link1: "https://yen.fyi/",
+      },
+      {
+        name: "Hem LLP",
+        detail: "Freelance Client",
+        image: "./hem.webp",
+        "button-name": "Visit",
+        link1: "https://hemcontracts.com/",
+      },
+      {
+        name: "ThinQ:Classroom",
+        detail: "Revolutionizing digital Education",
+        image: "./Screenshot 2024-04-17 223635.webp",
+        "button-name": "Visit",
+        link1: "https://maam-coders.vercel.app/",
+        "button-name2": "Code",
+        link2: "https://github.com/arnitdo/ThinQ",
+      },
+      {
+        name: "DealDex",
+        detail: "Online Price comparison",
+        image: "./Screenshot 2024-04-17 223735.webp",
+        "button-name": "Video",
+        link1: "https://www.youtube.com/watch?v=L-poYUOLeUQ",
+        "button-name2": "Code",
+        link2: "https://github.com/vaxad/DealDex",
+      },
+      {
+        name: "Nutrisnap",
+        detail: "Think of Health, Think of Nutrisnap",
+        image: "./nutrisnap.webp",
+        "button-name": "Visit",
+        link1: "https://nutrisnap.vercel.app/",
+      },
+      {
+        name: "HookWithMe",
+        detail: "Implementing hooks",
+        image: "./Screenshot 2024-05-16 223242.webp",
+        "button-name2": "Code",
+        link2: "https://github.com/rizzabh/react-hooks",
+        "button-name": "Visit",
+        link1: "https://hookswithme.netlify.app/",
+      },
+      {
+        name: "Platformer Game",
+        detail: "Mario Typa Beat",
+        image: "./Screenshot 2024-04-26 224149.webp",
+        "button-name": "Code",
+        link1: "https://github.com/rizzabh/grp-pygame",
+      },
+      {
+        name: "Github Searcher",
+        detail: "Made using nextjs",
+        image: "./gitsearch.webp",
+        "button-name": "Visit",
+        link1: "https://githubsearch-six.vercel.app/",
+      },
+      {
+        name: "LingoSafari",
+        detail: "Frontend Layout",
+        image: "./Screenshot 2024-03-08 144807.webp",
+        "button-name": "Visit",
+        link1: "https://lingo-safari.vercel.app/",
+      },
+      {
+        name: "GDSC Website",
+        detail: "Opensource contribution to GDSC TCET",
+        image: "./gdscjet.webp",
+        "button-name": "Visit",
+        link1: "https://gdsc-tcet-compose-camp.vercel.app/",
+        link2: "https://github.com/Yadav106/gdsc-compose-camp",
+        "button-name2": "Code",
+      },
+      {
+        name: "Therapy Bot",
+        detail: "Made a bot using Node, Discord.js",
+        image: "./therapy.webp",
+        link1: "https://github.com/rizzabh/TherapyBot",
+        "button-name": "Code",
+        link2:
+          "https://www.linkedin.com/posts/rizzabh_project-therapy-discord-bot-github-repo-activity-7134113357837578240-30uM?utm_source=share&utm_medium=member_desktop",
+        "button-name2": "Video",
+      },
+      {
+        name: "Threedee",
+        detail: "Showcasing 3d models using spline",
+        image: "./threedee.webp",
+        link1: "https://github.com/rizzabh/threedee",
+        "button-name": "Code",
+      },
+      {
+        name: "Cument (CRUD)",
+        detail: "A site where you can share your thoughts",
+        image: "./cument.webp",
+        link1: "https://github.com/rizzabh/cument",
+        "button-name": "Code",
+      },
+      {
+        name: "Realtime Weather",
+        detail: "Used Python",
+        image: "./Screenshot 2023-07-22 195226.webp",
+        link1: "https://github.com/rizzabh/weatherpython",
+        link2:
+          "https://www.linkedin.com/posts/rizzabh_python-weatherapp-memes-activity-7087829259175534593-WTpi?utm_source=share&utm_medium=member_desktop",
+        "button-name": "Code",
+        "button-name2": "Video",
+      },
+      {
+        name: "Flutter-App",
+        detail: "A to-do-List App",
+        image: "./WhatsApp Image 2023-07-22 at 21.53.59.jpg",
+        "button-name": "Code",
+        link1: "https://github.com/rizzabh/Learningflutter",
       },
     ],
-    uiProject: [
+    DES: [
       {
-        id: "1",
-        image: "/placeholder.svg?height=300&width=300&text=UI+Project+1",
-        title: "Dashboard UI",
-        description: "Analytics dashboard interface",
+        name: "UI/UX Projects",
+        detail: "Design Portfolio",
+        image: "./Framer.webp",
+        "button-name": "Visit",
+        link1: "https://rizzabh.framer.website/",
       },
       {
-        id: "2",
-        image: "/placeholder.svg?height=300&width=300&text=UI+Project+2",
-        title: "Mobile App",
-        description: "Mobile application design",
+        name: "Mobile App Design",
+        detail: "iOS and Android app interface design",
+        image: "/placeholder.svg?height=300&width=400&text=Mobile+Design",
+        "button-name": "View",
+        link1: "#",
       },
       {
-        id: "3",
-        image: "/placeholder.svg?height=300&width=300&text=UI+Project+3",
-        title: "Web Components",
-        description: "Reusable UI components",
+        name: "Dashboard UI",
+        detail: "Analytics dashboard user interface",
+        image: "/placeholder.svg?height=300&width=400&text=Dashboard+UI",
+        "button-name": "View",
+        link1: "#",
+      },
+      {
+        name: "Brand Identity",
+        detail: "Complete brand identity and guidelines",
+        image: "/placeholder.svg?height=300&width=400&text=Brand+Identity",
+        "button-name": "View",
+        link1: "#",
       },
     ],
   }
@@ -114,7 +249,7 @@ export default function Portfolio() {
         className={`max-w-4xl mx-auto border-l border-r ${darkMode ? "border-zinc-800" : "border-white/0"} px-4 py-8 sm:px-6 lg:px-8`}
       >
         {/* Header */}
-        <AnimatedSection>
+        <AnimatedSection delay={100}>
           <header className="flex flex-row justify-between items-center sm:items-center mb-12 gap-4">
             <div className="flex items-center gap-2 text-sm text-white dark:text-gray-400">
               <MapPin className="w-4 h-4" />
@@ -134,7 +269,7 @@ export default function Portfolio() {
         <div className=" border-dashed border-gray-300 dark:border-gray-700 mb-12"></div>
 
         {/* Profile Section */}
-        <AnimatedSection delay={100}>
+        <AnimatedSection delay={200}>
           <section className="text-center mb-16">
             <div className="relative w-24 h-24 mx-auto mb-6 ">
               <Image src="/profile-avatar.png" alt="Rishabh Pandey" width={96} height={96} className="rounded-xl border-4 border-gray-100" />
@@ -147,7 +282,7 @@ export default function Portfolio() {
         <div className=" border-dashed border-gray-300 dark:border-gray-700 mb-16"></div>
 
         {/* About Section */}
-        <AnimatedSection delay={100}>
+        <AnimatedSection delay={200}>
           <section className="mb-16">
             <h2 className="text-lg font-semibold mb-4 tracking-wide">ABOUT</h2>
             <p className="text-zinc-800 dark:text-gray-300 leading-relaxed max-w-3xl">
@@ -161,7 +296,7 @@ export default function Portfolio() {
         <div className="border-dashed border-gray-300 dark:border-gray-700 mb-16"></div>
 
         {/* Experience Section */}
-        <AnimatedSection delay={100}>
+        <AnimatedSection delay={200}>
           <section className="mb-16">
             <h2 className="text-lg font-semibold mb-6 tracking-wide">EXPERIENCE</h2>
             <div className="space-y-6">
@@ -206,7 +341,7 @@ export default function Portfolio() {
 
 
         {/* Skills Section */}
-        <AnimatedSection delay={100}>
+        <AnimatedSection delay={200}>
           <section className="mb-16">
             <h2 className="text-lg font-semibold mb-6 tracking-wide">SKILLS / STACK</h2>
             <div className="flex flex-wrap gap-3">
@@ -225,40 +360,54 @@ export default function Portfolio() {
                 "Data Structures & Algo",
                 "Web3",
               ].map((skill, index) => (
-                <Badge
+                <div
                   key={skill}
                   variant="secondary"
-                  className="px-4 py-2 text-sm bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-300 hover:scale-105"
+                  className="px-4 py-2 text-sm bg-gradient-to-b from-white to-gray-100 border border-gray-200 rounded-xl dark:from-zinc-900 dark:to-black text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 dark:border-zinc-800 transition-all duration-300 hover:scale-105"
                   style={{
                     animationDelay: `${index * 50}ms`,
                   }}
                 >
                   {skill}
-                </Badge>
+                </div>
               ))}
             </div>
           </section>
         </AnimatedSection>
 
         {/* Projects Section */}
-        <AnimatedSection delay={100}>
+        <AnimatedSection delay={200}>
           <section className="mb-16">
-            <h2 className="text-lg font-semibold mb-6 tracking-wide">PROJECTS</h2>
-            <div className="grid grid-cols-1 gap-6">
-              {/* About Us Project with Carousel - Takes 2 columns */}
-              <Card className="overflow-hidden hover:shadow-lg hover:-translate-y-2 transition-all duration-300">
-                <CardContent className="p-0">
-                  <div className="aspect-square md:aspect-[2/1] relative">
-                    <Carousel items={projectData.aboutUs} autoPlay={true} autoPlayInterval={4000} />
-                  </div>
-                </CardContent>
-              </Card>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-lg font-semibold tracking-wide">PROJECTS</h2>
 
-              {/* Right column container for the other two cards */}
-
-              {/* View Projects Card */}
-              
+              {/* Tab Switch */}
+              <div className="flex bg-zinc-400/10 border border-gray-200 dark:bg-zinc-700/50 backdrop-blur-sm rounded-xl p-1 dark:border-zinc-800">
+                <button
+                  onClick={() => setActiveTab("DEV")}
+                  className={`px-2 flex gap-1 items-center py-1 text-sm font-medium rounded-lg transition-all duration-200 ${
+                    activeTab === "DEV"
+                      ? "bg-white dark:bg-zinc-950 text-blue-600 dark:text-blue-400 shadow-sm"
+                      : "text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
+                  }`}
+                >
+                  {activeTab === "DEV" && <Terminal size={16} />} DEV
+                </button>
+                <button
+                  onClick={() => setActiveTab("DES")}
+                  className={`px-2 py-1 flex gap-1 items-center text-sm font-medium rounded-lg transition-all duration-200 ${
+                    activeTab === "DES"
+                      ? "bg-white dark:bg-zinc-950 text-blue-600 dark:text-blue-400 shadow-sm"
+                      : "text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
+                  }`}
+                >
+                  {activeTab === "DES" && <Palette size={16} />} DES
+                </button>
+              </div>
             </div>
+
+            {/* Project Carousel */}
+            <ProjectCarousel projects={projectData[activeTab]} autoPlay={false} autoPlayInterval={6000} />
           </section>
         </AnimatedSection>
 
@@ -282,14 +431,14 @@ export default function Portfolio() {
                 <span className="font-medium">Email</span>
                 <span className="text-gray-600 dark:text-gray-300">pandeyrishabh966@gmail.com</span>
               </div>
-              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center transition-all duration-300 hover:translate-x-2">
+              <Link href="https://linkedin.com/in/rizzabh" className="flex flex-col sm:flex-row sm:justify-between sm:items-center transition-all duration-300 hover:translate-x-2">
                 <span className="font-medium">LinkedIn</span>
-                <span className="text-gray-600 dark:text-gray-300">/in/rizzabh</span>
-              </div>
-              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center transition-all duration-300 hover:translate-x-2">
+                <span className="text-gray-600 dark:text-gray-300 hover:underline">/in/rizzabh</span>
+              </Link>
+              <Link href="https://x.com/rizz_abh" className="flex flex-col sm:flex-row sm:justify-between sm:items-center transition-all duration-300 hover:translate-x-2">
                 <span className="font-medium">X/Twitter</span>
-                <span className="text-gray-600 dark:text-gray-300">@rizz_abh</span>
-              </div>
+                <span className="text-gray-600 dark:text-gray-300 hover:underline">@rizz_abh</span>
+              </Link>
             </div>
           </section>
         </AnimatedSection>
