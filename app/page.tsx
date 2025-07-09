@@ -12,6 +12,7 @@ import Lenis from "@studio-freight/lenis"
 export default function Portfolio() {
   const [darkMode, setDarkMode] = useState(false)
   const [activeTab, setActiveTab] = useState("DEV")
+  const [hover, setHover] = useState(false)
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode)
@@ -292,11 +293,13 @@ export default function Portfolio() {
           <section className="text-center mb-16">
             <div className="relative w-24 h-24 mx-auto mb-6 ">
               <Image
-                src="/profile-avatar.png"
+                src={hover? "/rishabhjus.png" : "/profile-avatar.png"}
                 alt="Rishabh Pandey"
                 width={96}
                 height={96}
-                className={`rounded-xl border-4  ${darkMode ? "border-gray-100/10" : "border-gray-100" } font-bold mb-2`}
+                onMouseEnter={() => setHover(true)}
+                onMouseLeave={() => setHover(false)}
+                className={`rounded-xl border-4 transition-all hover:-rotate-6  ${darkMode ? "border-gray-100/10" : "border-gray-100" } font-bold mb-2`}
               />
             </div>
             <h1 className={`text-3xl sm:text-4xl ${darkMode ? "text-white" : "text-black"} font-bold mb-2`}>
@@ -366,40 +369,7 @@ export default function Portfolio() {
           </section>
         </AnimatedSection>
 
-        {/* Skills Section */}
-        <AnimatedSection delay={200}>
-          <section className="mb-16">
-            <h2 className="text-lg font-semibold mb-6 tracking-wide">SKILLS / STACK</h2>
-            <div className="flex flex-wrap gap-3">
-              {[
-                "UX",
-                "Product Design",
-                "User Interface",
-                "Prototyping",
-                "React",
-                "Typescript",
-                "Next.js",
-                "Tailwind CSS",
-                "Express",
-                "Nodejs",
-                "C++",
-                "Data Structures & Algo",
-                "Web3",
-              ].map((skill, index) => (
-                <div
-                  key={skill}
-                  variant="secondary"
-                  className="px-4 py-2 text-sm bg-gradient-to-b from-white to-gray-100 border border-gray-200 rounded-xl dark:from-zinc-900 dark:to-black text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 dark:border-zinc-800 transition-all duration-300 hover:scale-105"
-                  style={{
-                    animationDelay: `${index * 50}ms`,
-                  }}
-                >
-                  {skill}
-                </div>
-              ))}
-            </div>
-          </section>
-        </AnimatedSection>
+        
 
         {/* Projects Section */}
         <AnimatedSection delay={200}>
@@ -434,6 +404,41 @@ export default function Portfolio() {
 
             {/* Project Carousel */}
             <ProjectCarousel projects={projectData[activeTab]} autoPlay={false} autoPlayInterval={6000} />
+          </section>
+        </AnimatedSection>
+
+        {/* Skills Section */}
+        <AnimatedSection delay={200}>
+          <section className="mb-16">
+            <h2 className="text-lg font-semibold mb-6 tracking-wide">SKILLS / STACK</h2>
+            <div className="flex flex-wrap gap-3">
+              {[
+                "UX",
+                "Product Design",
+                "User Interface",
+                "Prototyping",
+                "React",
+                "Typescript",
+                "Next.js",
+                "Tailwind CSS",
+                "Express",
+                "Nodejs",
+                "C++",
+                "Data Structures & Algo",
+                "Web3",
+              ].map((skill, index) => (
+                <div
+                  key={skill}
+                  variant="secondary"
+                  className="px-4 py-2 text-sm bg-gradient-to-b from-white to-gray-100 border border-gray-200 rounded-xl dark:from-zinc-900 dark:to-black text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 dark:border-zinc-800 transition-all duration-300 hover:scale-105"
+                  style={{
+                    animationDelay: `${index * 50}ms`,
+                  }}
+                >
+                  {skill}
+                </div>
+              ))}
+            </div>
           </section>
         </AnimatedSection>
 

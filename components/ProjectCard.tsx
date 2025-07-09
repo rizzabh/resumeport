@@ -40,7 +40,7 @@ export function ProjectCard({ name, detail, image, buttonName, link1, buttonName
   return (
     <div className="bg-white dark:bg-zinc-900 rounded-2xl transition-all duration-300 overflow-hidden border border-gray-200 dark:border-zinc-800 group">
       {/* Browser Header */}
-      <div className="flex items-center justify-between px-2 py-3 bg-gray-50 dark:bg-zinc-800 border-b border-gray-200 dark:border-zinc-700">
+      <div className="flex items-center bg-white justify-between px-2 py-3 bg-gray-50 dark:bg-zinc-950 border-b border-gray-200 dark:border-zinc-800 ">
         <div className="flex items-center gap-2">
           
             <span className="text-xs items-center text-gray-500 flex gap-1 px-2 py-1 bg-gray-400/10 rounded-full truncate text-clamp-1 dark:text-gray-400 font-mono">
