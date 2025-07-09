@@ -345,7 +345,7 @@ export default function Portfolio() {
                 <div className="flex-1">
                   <h3 className="font-semibold text-lg">SDE Frontend Intern</h3>
                   <p className="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wide">
-                    VIGMOTECH • JUNE 2024 - AUG 2024
+                    VIGHNOTECH • JUNE 2024 - AUG 2024
                   </p>
                 </div>
               </div>
