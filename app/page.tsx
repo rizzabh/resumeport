@@ -309,21 +309,18 @@ export default function Portfolio() {
           </section>
         </AnimatedSection>
 
-        <div className=" border-dashed border-gray-300 dark:border-gray-700 mb-16"></div>
-
+        
         {/* About Section */}
         <AnimatedSection delay={200}>
-          <section className="mb-16">
+          <section className="mb-10">
             <h2 className="text-lg font-semibold mb-4 tracking-wide">ABOUT</h2>
             <p className="text-zinc-800 dark:text-gray-300 leading-relaxed max-w-3xl">
-              I'm a Design Engineer crafting intuitive, scalable digital experiences at the intersection of design and
-              code. With a strong foundation in front-end development and UX design, I bring ideas to life from concept
-              to deployment by building robust UI systems and shaping user-centered products.
+              Hey, I’m a design engineer, currently interning at Juspay. I build clean, functional stuff that actually makes sense. 
             </p>
           </section>
         </AnimatedSection>
 
-        <div className="border-dashed border-gray-300 dark:border-gray-700 mb-16"></div>
+        <div className="border-b border-zinc-200 z-10 dark:border-zinc-900 mb-10"></div>
 
         {/* Experience Section */}
         <AnimatedSection delay={200}>
