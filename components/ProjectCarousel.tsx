@@ -16,28 +16,13 @@ interface Project {
 
 interface ProjectCarouselProps {
   projects: Project[]
-  autoPlay?: boolean
-  autoPlayInterval?: number
 }
 
-export function ProjectCarousel({
-  projects,
-  autoPlay = false,
-  autoPlayInterval = 5000,
-}: ProjectCarouselProps) {
-  const [currentIndex, setCurrentIndex] = useState(0)
+export function ProjectCarousel({ projects }: ProjectCarouselProps) {
+  const scrollRef = useRef<HTMLDivElement>(null)
   const [isDesktop, setIsDesktop] = useState(false)
-  const [transitioning, setTransitioning] = useState(false)
-  const trackRef = useRef<HTMLDivElement>(null)
+  const [currentIndex, setCurrentIndex] = useState(0)
 
-  const itemsPerView = isDesktop ? 2 : 1
-  const clonedHead = projects.slice(0, itemsPerView)
-  const clonedTail = projects.slice(-itemsPerView)
-  const extendedProjects = [...clonedTail, ...projects, ...clonedHead]
-  const totalSlides = extendedProjects.length
-  const realStartIndex = clonedTail.length
-
-  // Desktop Check
   useEffect(() => {
     const checkDesktop = () => setIsDesktop(window.innerWidth >= 768)
     checkDesktop()
@@ -45,76 +30,47 @@ export function ProjectCarousel({
     return () => window.removeEventListener("resize", checkDesktop)
   }, [])
 
-  // Set initial index after itemsPerView is determined
-  useEffect(() => {
-    setCurrentIndex(realStartIndex)
-  }, [itemsPerView])
+  const itemsPerView = isDesktop ? 2 : 1
+  const maxIndex = Math.max(0, projects.length - itemsPerView)
 
-  // Autoplay
-  useEffect(() => {
-    if (!autoPlay || projects.length <= itemsPerView) return
-    const interval = setInterval(() => {
-      goToNext()
-    }, autoPlayInterval)
-    return () => clearInterval(interval)
-  }, [autoPlay, autoPlayInterval, currentIndex, itemsPerView, projects.length])
+  const scrollToIndex = (index: number) => {
+    const container = scrollRef.current
+    if (!container) return
+
+    const child = container.children[index] as HTMLElement
+    child?.scrollIntoView({ behavior: "smooth", inline: "start" })
+    setCurrentIndex(index)
+  }
 
   const goToPrevious = () => {
-    if (transitioning) return
-    setTransitioning(true)
-    setCurrentIndex((prev) => prev - 1)
+    const newIndex = Math.max(currentIndex - 1, 0)
+    scrollToIndex(newIndex)
   }
 
   const goToNext = () => {
-    if (transitioning) return
-    setTransitioning(true)
-    setCurrentIndex((prev) => prev + 1)
+    const newIndex = Math.min(currentIndex + 1, maxIndex)
+    scrollToIndex(newIndex)
   }
 
-  // Loop Reset Logic
-  useEffect(() => {
-    if (!trackRef.current) return
-
-    const handleTransitionEnd = () => {
-      setTransitioning(false)
-      if (currentIndex === extendedProjects.length - itemsPerView) {
-        // Reached clone head → reset to real start
-        trackRef.current.style.transition = "none"
-        setCurrentIndex(realStartIndex)
-        requestAnimationFrame(() => {
-          trackRef.current!.style.transition = "transform 0.5s ease-in-out"
-        })
-      } else if (currentIndex === 0) {
-        // Reached clone tail → reset to real end
-        trackRef.current.style.transition = "none"
-        setCurrentIndex(extendedProjects.length - itemsPerView * 2)
-        requestAnimationFrame(() => {
-          trackRef.current!.style.transition = "transform 0.5s ease-in-out"
-        })
-      }
-    }
-
-    const el = trackRef.current
-    el.addEventListener("transitionend", handleTransitionEnd)
-    return () => el.removeEventListener("transitionend", handleTransitionEnd)
-  }, [currentIndex, itemsPerView, extendedProjects.length])
+  if (projects.length === 0) {
+    return (
+      <div className="flex items-center justify-center h-64 bg-gray-100 dark:bg-zinc-800 rounded-2xl border border-gray-200 dark:border-zinc-700">
+        <p className="text-gray-500 dark:text-gray-400">No projects available</p>
+      </div>
+    )
+  }
 
   return (
-    <div className="relative w-full overflow-hidden">
-      {/* Carousel Track */}
+    <div className="relative w-full">
+      {/* Carousel Container with Native Scroll */}
       <div
-        ref={trackRef}
-        className="flex transition-transform duration-500 ease-in-out"
-        style={{
-          transform: `translateX(-${(100 / extendedProjects.length) * currentIndex}%)`,
-          width: `${(100 / itemsPerView) * extendedProjects.length}%`,
-        }}
+        ref={scrollRef}
+        className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar"
       >
-        {extendedProjects.map((project, index) => (
+        {projects.map((project, index) => (
           <div
             key={index}
-            className="flex-shrink-0 px-2"
-            style={{ width: `${100 / extendedProjects.length}%`, scrollSnapAlign: "start" }}
+            className="flex-shrink-0 w-full md:w-1/2 px-2 snap-start"
           >
             <ProjectCard
               name={project.name}
@@ -129,21 +85,39 @@ export function ProjectCarousel({
         ))}
       </div>
 
-      {/* Navigation Arrows */}
-      <div className="flex justify-center items-center gap-4 mt-6">
-        <button onClick={goToPrevious} className="p-2 rounded-full bg-zinc-200 dark:bg-zinc-700">
-          <ChevronLeft className="w-4 h-4" />
-        </button>
-        <button onClick={goToNext} className="p-2 rounded-full bg-zinc-200 dark:bg-zinc-700">
-          <ChevronRight className="w-4 h-4" />
-        </button>
-      </div>
+      {/* Navigation */}
+      {projects.length > itemsPerView && (
+        <div className="flex items-center justify-center gap-4 mt-6">
+          <button
+            onClick={goToPrevious}
+            disabled={currentIndex === 0}
+            className="p-2 rounded-full bg-zinc-200 dark:bg-zinc-700 disabled:opacity-50"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
 
-      {/* Scroll Snapping (Tailwind-based) */}
+          <span className="text-sm text-gray-600 dark:text-gray-300">
+            {currentIndex + 1} of {maxIndex + 1}
+          </span>
+
+          <button
+            onClick={goToNext}
+            disabled={currentIndex >= maxIndex}
+            className="p-2 rounded-full bg-zinc-200 dark:bg-zinc-700 disabled:opacity-50"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+      )}
+
+      {/* Optional: Hide scroll bar */}
       <style jsx>{`
-        .scroll-snap {
-          scroll-snap-type: x mandatory;
-          overflow-x: auto;
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
       `}</style>
     </div>
