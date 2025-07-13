@@ -221,13 +221,13 @@ export default function Portfolio() {
      before:bg-[url('/dark-sky-background.png')] 
      before:bg-contain 
      before:bg-no-repeat 
-     xl:before:bg-[center_-600px]
-     lg:before:bg-[center_-400px]
-     md:before:bg-[center_-200px]
+     xl:before:bg-[center_-400px]
+     
+     
      sm:before:bg-[center_-200px]
 
      
-     max-sm:before:bg-[center_-400px]
+     max-sm:before:bg-[center_-300px]
      max-sm:before:bg-[length:1200px_auto] 
      before:opacity-90 
      before:pointer-events-none 
