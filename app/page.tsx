@@ -414,7 +414,7 @@ export default function Portfolio() {
                 <div
                   key={skill}
                   variant="secondary"
-                  className="px-4 py-2 text-sm bg-gradient-to-b from-white to-gray-100 border border-gray-200 rounded-xl dark:to-zinc-900 dark:from-black text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 dark:border-zinc-900 transition-all duration-300 hover:scale-105"
+                  className="px-4 py-2 text-sm bg-gradient-to-b from-white to-gray-100 border border-gray-200 rounded-xl dark:to-zinc-900 dark:from-zinc-950 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 dark:border-zinc-900 transition-all duration-300 hover:scale-105"
                   style={{
                     animationDelay: `${index * 50}ms`,
                   }}
