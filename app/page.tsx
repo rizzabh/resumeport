@@ -89,7 +89,7 @@ export default function Portfolio() {
         detail: "Revolutionizing digital Education",
         image: "./Screenshot 2024-04-17 223635.webp",
         "button-name": "Visit",
-        link1: "https://maam-coders.vercel.app/",
+        link1: "https://thinq.vercel.app/",
         "button-name2": "Code",
         link2: "https://github.com/arnitdo/ThinQ",
       },
