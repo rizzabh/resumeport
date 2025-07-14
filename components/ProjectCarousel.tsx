@@ -38,7 +38,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
     if (!container) return
 
     const child = container.children[index] as HTMLElement
-    child?.scrollIntoView({ behavior: "smooth", inline: "start" })
+    child?.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" })
     setCurrentIndex(index)
   }
 
