@@ -9,9 +9,24 @@ import { ProjectCarousel } from "@/components/ProjectCarousel"
 import Link from "next/link"
 import Lenis from "@studio-freight/lenis"
 
+interface Project {
+  name: string
+  detail: string
+  image: string
+  "button-name"?: string
+  link1?: string
+  "button-name2"?: string
+  link2?: string
+}
+
+interface ProjectData {
+  DEV: Project[]
+  DES: Project[]
+}
+
 export default function Portfolio() {
   const [darkMode, setDarkMode] = useState(false)
-  const [activeTab, setActiveTab] = useState("DEV")
+  const [activeTab, setActiveTab] = useState<"DEV" | "DES">("DEV")
   const [hover, setHover] = useState(false)
 
   const toggleDarkMode = () => {
@@ -22,14 +37,7 @@ export default function Portfolio() {
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: "vertical",
-      gestureDirection: "vertical",
-      smooth: true,
-      mouseMultiplier: 1,
-      smoothTouch: false,
-      touchMultiplier: 2,
-      infinite: false,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     })
 
     function raf(time: number) {
@@ -45,7 +53,7 @@ export default function Portfolio() {
   }, [])
 
   // Sample project data with carousel items
-  const projectData = {
+  const projectData: ProjectData = {
     DEV: [
       {
         name: "Solana Rewind",
@@ -107,7 +115,7 @@ export default function Portfolio() {
         detail: "Think of Health, Think of Nutrisnap",
         image: "./nutrisnap.webp",
         "button-name": "Visit",
-        link1: "https://nutrisnap.vercel.app/",
+        link1: "https://nutrisnap.xyz/",
       },
       {
         name: "HookWithMe",
@@ -301,8 +309,14 @@ export default function Portfolio() {
         <AnimatedSection delay={200}>
           <section className="mb-10">
             <h2 className="text-lg font-semibold mb-4 tracking-wide">ABOUT</h2>
-            <p className="text-zinc-800 dark:text-gray-300 leading-relaxed max-w-3xl">
-              Hey, I’m a design engineer, currently interning at Juspay. I build clean, functional stuff that actually makes sense. 
+            <p className="text-zinc-800 dark:text-gray-300 leading-normal max-w-3xl flex-col flex gap-1">
+             <span>- Hey, I'm a design engineer, currently interning at Juspay. I build clean, functional stuff that actually makes sense.</span> <br/>
+
+             <span>- I developed <Link href={"https://nutrisnap.xyz"} className="underline">nutrisnap</Link> which gained 25k+ Users and 3 million+ impressions on <Link href="https://instagram.com/nutrisnap.ai" className="underline">instagram.</Link></span> <br/>
+
+              <span>- Also gave a talk on <Link href="https://youtu.be/OT0rT0bbc7k?feature=shared" className="underline">"Devs vs Designers"</Link> at TCET. </span> <br/>
+
+              <span>- Raised grants on 3 different web3 projects. </span> <br/>
             </p>
           </section>
         </AnimatedSection>
@@ -387,7 +401,7 @@ export default function Portfolio() {
             </div>
 
             {/* Project Carousel */}
-            <ProjectCarousel projects={projectData[activeTab]} autoPlay={false} autoPlayInterval={6000} />
+            <ProjectCarousel projects={projectData[activeTab]} />
           </section>
         </AnimatedSection>
 
@@ -413,7 +427,6 @@ export default function Portfolio() {
               ].map((skill, index) => (
                 <div
                   key={skill}
-                  variant="secondary"
                   className="px-4 py-2 text-sm bg-gradient-to-b from-white to-gray-100 border border-gray-200 rounded-xl dark:to-zinc-900 dark:from-zinc-950 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 dark:border-zinc-900 transition-all duration-300 hover:scale-105"
                   style={{
                     animationDelay: `${index * 50}ms`,
