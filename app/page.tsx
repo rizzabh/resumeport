@@ -192,7 +192,7 @@ export default function Portfolio() {
       },
       {
         name: "Flutter-App",
-        detail: "A to-do-List App",
+        detail: "to-do-List App",
         image: "./WhatsApp Image 2023-07-22 at 21.53.59.jpg",
         "button-name": "Code",
         link1: "https://github.com/rizzabh/Learningflutter",
@@ -213,14 +213,13 @@ export default function Portfolio() {
         "button-name": "Visit",
         link1: "https://rizzabh.framer.website/",
       },
-      
+
     ],
   }
 
   return (
     <div
-      className={`min-h-screen transition-colors duration-300 relative ${
-        darkMode
+      className={`min-h-screen transition-colors duration-300 relative ${darkMode
           ? `
      text-white
      before:content-[''] 
@@ -254,7 +253,7 @@ export default function Portfolio() {
           before:pointer-events-none 
           before:-z-10
         `
-      }`}
+        }`}
     >
       <div className={`max-w-4xl mx-auto ${darkMode ? "" : "border-white/0"} px-4 py-8 sm:px-6 lg:px-8`}>
         {/* Header */}
@@ -288,13 +287,13 @@ export default function Portfolio() {
           <section className="text-center mb-16">
             <div className="relative w-24 h-24 mx-auto mb-6 ">
               <Image
-                src={hover? "/rishabhjus.png" : "/profile-avatar.png"}
+                src={hover ? "/rishabhjus.png" : "/profile-avatar.png"}
                 alt="Rishabh Pandey"
                 width={96}
                 height={96}
                 onMouseEnter={() => setHover(true)}
                 onMouseLeave={() => setHover(false)}
-                className={`rounded-xl border-4 transition-all hover:-rotate-6  ${darkMode ? "border-gray-100/10" : "border-gray-100" } font-bold mb-2`}
+                className={`rounded-xl border-4 transition-all hover:-rotate-6  ${darkMode ? "border-gray-100/10" : "border-gray-100"} font-bold mb-2`}
               />
             </div>
             <h1 className={`text-3xl sm:text-4xl ${darkMode ? "text-white" : "text-black"} font-bold mb-2`}>
@@ -304,19 +303,19 @@ export default function Portfolio() {
           </section>
         </AnimatedSection>
 
-        
+
         {/* About Section */}
         <AnimatedSection delay={200}>
           <section className="mb-10">
             <h2 className="text-lg font-semibold mb-4 tracking-wide">ABOUT</h2>
             <p className="text-zinc-800 dark:text-gray-300 leading-normal max-w-3xl flex-col flex gap-1">
-             <span>- Hey, I'm a design engineer, currently interning at Juspay. I build clean, functional stuff that actually makes sense.</span> <br/>
+              <span>- Hey, I'm a design engineer, currently interning at Juspay. I build clean, functional stuff that actually makes sense.</span> <br />
 
-             <span>- I developed <Link href={"https://nutrisnap.xyz"} className="underline">nutrisnap</Link> which gained 25k+ Users and 3 million+ impressions on <Link href="https://instagram.com/nutrisnap.ai" className="underline">instagram.</Link></span> <br/>
+              <span>- I developed <Link href={"https://nutrisnap.xyz"} className="underline">nutrisnap</Link> which gained 25k+ Users and 3 million+ impressions on <Link href="https://instagram.com/nutrisnap.ai" className="underline">instagram.</Link></span> <br />
 
-              <span>- Also gave a talk on <Link href="https://youtu.be/OT0rT0bbc7k?feature=shared" className="underline">"Devs vs Designers"</Link> at TCET. </span> <br/>
+              <span>- Also gave a talk on <Link href="https://youtu.be/OT0rT0bbc7k?feature=shared" className="underline">"Devs vs Designers"</Link> at TCET. </span> <br />
 
-              <span>- Raised grants on 3 different web3 projects. </span> <br/>
+              <span>- Raised grants on 3 different web3 projects. </span> <br />
             </p>
           </section>
         </AnimatedSection>
@@ -367,7 +366,7 @@ export default function Portfolio() {
           </section>
         </AnimatedSection>
 
-        
+
 
         {/* Projects Section */}
         <AnimatedSection delay={200}>
@@ -379,21 +378,19 @@ export default function Portfolio() {
               <div className="flex bg-zinc-400/10 border border-gray-200 dark:bg-zinc-700/50 backdrop-blur-sm rounded-xl p-1 dark:border-zinc-800">
                 <button
                   onClick={() => setActiveTab("DEV")}
-                  className={`px-2 flex gap-1 items-center py-1 text-sm font-medium rounded-lg transition-all duration-200 ${
-                    activeTab === "DEV"
+                  className={`px-2 flex gap-1 items-center py-1 text-sm font-medium rounded-lg transition-all duration-200 ${activeTab === "DEV"
                       ? "bg-white dark:bg-zinc-950 text-blue-600 dark:text-blue-400 shadow-sm"
                       : "text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
-                  }`}
+                    }`}
                 >
                   {activeTab === "DEV" && <Terminal size={16} />} DEV
                 </button>
                 <button
                   onClick={() => setActiveTab("DES")}
-                  className={`px-2 py-1 flex gap-1 items-center text-sm font-medium rounded-lg transition-all duration-200 ${
-                    activeTab === "DES"
+                  className={`px-2 py-1 flex gap-1 items-center text-sm font-medium rounded-lg transition-all duration-200 ${activeTab === "DES"
                       ? "bg-white dark:bg-zinc-950 text-blue-600 dark:text-blue-400 shadow-sm"
                       : "text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
-                  }`}
+                    }`}
                 >
                   {activeTab === "DES" && <Palette size={16} />} DES
                 </button>
