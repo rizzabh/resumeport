@@ -26,7 +26,7 @@ interface ProjectData {
 
 export default function Portfolio() {
   const [darkMode, setDarkMode] = useState(false)
-  const [activeTab, setActiveTab] = useState<"DEV" | "DES">("DEV")
+  const [activeTab, setActiveTab] = useState<"DEV" | "DES">("DES")
   const [hover, setHover] = useState(false)
 
   const toggleDarkMode = () => {
@@ -264,6 +264,13 @@ export default function Portfolio() {
               <span>BOM ✈️ BLR, INDIA</span>
             </div>
             <div className="flex items-center gap-3">
+              <Link
+                href="/partymode"
+                className="flex items-center justify-center w-9 h-9 rounded-full text-white hover:bg-white/10 transition-colors"
+                title="Party Mode"
+              >
+                <span className="text-lg">🎉</span>
+              </Link>
               <Button
                 variant="ghost"
                 size="icon"
@@ -377,22 +384,22 @@ export default function Portfolio() {
               {/* Tab Switch */}
               <div className="flex bg-zinc-400/10 border border-gray-200 dark:bg-zinc-700/50 backdrop-blur-sm rounded-xl p-1 dark:border-zinc-800">
                 <button
-                  onClick={() => setActiveTab("DEV")}
-                  className={`px-2 flex gap-1 items-center py-1 text-sm font-medium rounded-lg transition-all duration-200 ${activeTab === "DEV"
-                      ? "bg-white dark:bg-zinc-950 text-blue-600 dark:text-blue-400 shadow-sm"
-                      : "text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
-                    }`}
-                >
-                  {activeTab === "DEV" && <Terminal size={16} />} DEV
-                </button>
-                <button
                   onClick={() => setActiveTab("DES")}
                   className={`px-2 py-1 flex gap-1 items-center text-sm font-medium rounded-lg transition-all duration-200 ${activeTab === "DES"
                       ? "bg-white dark:bg-zinc-950 text-blue-600 dark:text-blue-400 shadow-sm"
                       : "text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
                     }`}
                 >
-                  {activeTab === "DES" && <Palette size={16} />} DES
+                  {activeTab === "DES" && <Palette size={16} />} DES ({projectData.DES.length})
+                </button>
+                <button
+                  onClick={() => setActiveTab("DEV")}
+                  className={`px-2 flex gap-1 items-center py-1 text-sm font-medium rounded-lg transition-all duration-200 ${activeTab === "DEV"
+                      ? "bg-white dark:bg-zinc-950 text-blue-600 dark:text-blue-400 shadow-sm"
+                      : "text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
+                    }`}
+                >
+                  {activeTab === "DEV" && <Terminal size={16} />} DEV ({projectData.DEV.length})
                 </button>
               </div>
             </div>
