@@ -661,7 +661,7 @@ function Frame({
 }) {
 
   return (
-    <div className="-translate-x-1/2 top-12 max-md:top-36 max-sm:top-96 absolute bg-[#f1eae0] border border-[#d9d3ca] border-solid h-[903px] left-1/2 overflow-clip rounded-[33px] shadow-[410px_449px_170px_0px_rgba(112,112,112,0.01),263px_287px_156px_0px_rgba(112,112,112,0.04),148px_162px_131px_0px_rgba(112,112,112,0.15),66px_72px_97px_0px_rgba(112,112,112,0.26),16px_18px_54px_0px_rgba(112,112,112,0.29)] top-[calc(50%-0.5px)] w-[792px]">
+    <div className="-translate-x-1/2 top-10 max-md:top-36 max-sm:top-96 absolute bg-[#f1eae0] border border-[#d9d3ca] border-solid h-[903px] left-1/2 overflow-clip rounded-[33px] shadow-[410px_449px_170px_0px_rgba(112,112,112,0.01),263px_287px_156px_0px_rgba(112,112,112,0.04),148px_162px_131px_0px_rgba(112,112,112,0.15),66px_72px_97px_0px_rgba(112,112,112,0.26),16px_18px_54px_0px_rgba(112,112,112,0.29)] top-[calc(50%-0.5px)] w-[792px]">
       <div className="absolute font-['Plus_Jakarta_Sans:Medium',sans-serif] font-medium leading-[normal] left-[57px] text-[#5e5e5e] text-[37px] top-[111px] tracking-[-1.11px] whitespace-nowrap">
         <p className="mb-0">rizzabh</p>
         <p>rp-01</p>
@@ -713,7 +713,7 @@ export default function TwitterPost() {
   )
 
   return (
-    <div className="bg-white relative size-full max-md:scale-75 max-sm:scale-50 select-none" data-name="Twitter post - 1">
+    <div className="bg-white relative size-full select-none" data-name="Twitter post - 1">
       {/* Back button */}
       <a
         href="/"
@@ -724,6 +724,7 @@ export default function TwitterPost() {
         </svg>
         Back
       </a>
+      <div className="max-md:scale-75 max-sm:scale-50">
       <Frame
         volume={volume}
         setVolume={setVolume}
@@ -733,9 +734,11 @@ export default function TwitterPost() {
         togglePlay={togglePlay}
         skipForward={skipForward}
         skipBackward={skipBackward}
+       
       />
+      </div>
       {/* Spotify-style lyrics display beside the device */}
-      <div className="absolute mx-auto left-1/2 -translate-x-1/2 top-96 w-[350px]">
+      <div className="absolute mx-auto left-1/2 -translate-x-1/2 top-96 w-[350px] max-md:scale-75">
         <div className="flex flex-col gap-1">
           {visibleLyrics.map((lyric, i) => {
             const actualIndex = Math.max(0, currentLyricIndex - 2) + i
