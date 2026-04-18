@@ -294,7 +294,7 @@ export default function Portfolio() {
           <section className="text-center mb-16">
             <div className="relative w-24 h-24 mx-auto mb-6 ">
               <Image
-                src={hover ? "/rishabhjus.png" : "/profile-avatar.png"}
+                src="/rishabhjus.png"
                 alt="Rishabh Pandey"
                 width={96}
                 height={96}
